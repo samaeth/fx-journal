@@ -88,7 +88,8 @@ def index():
     trades = cursor.fetchall()
     conn.close()
 
-    return render_template("index.html", trades=trades)
+    return render_template("journal.html", trades=trades)
 
 if __name__ == "__main__":
     app.run()
+
