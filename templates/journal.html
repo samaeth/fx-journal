@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FX Journal</title>
+    <style>
+        body { font-family: Arial; background:#111; color:white; padding:30px; }
+        input, select { padding:8px; margin:5px; }
+        button { padding:8px 15px; background:#00ff88; border:none; }
+        table { margin-top:20px; width:100%; border-collapse: collapse; }
+        th, td { border:1px solid #444; padding:8px; text-align:center; }
+        th { background:#222; }
+    </style>
+</head>
+<body>
+
+<h2>FX Journal</h2>
+
+<form method="POST">
+    <input name="pair" placeholder="EUR/USD" required>
+    
+    <select name="execution_type">
+        <option value="current">Current</option>
+        <option value="pending">Pending</option>
+    </select>
+    
+    <input name="entry" placeholder="Entry (if pending)">
+    <input name="tp" placeholder="Take Profit" required>
+    <input name="sl" placeholder="Stop Loss" required>
+    
+    <button type="submit">Add Trade</button>
+</form>
+
+<table>
+<tr>
+    <th>Pair</th>
+    <th>Entry</th>
+    <th>TP</th>
+    <th>SL</th>
+    <th>RR</th>
+    <th>Type</th>
+</tr>
+
+{% for trade in trades %}
+<tr>
+    <td>{{ trade[1] }}</td>
+    <td>{{ trade[2] }}</td>
+    <td>{{ trade[3] }}</td>
+    <td>{{ trade[4] }}</td>
+    <td>{{ trade[5]|round(2) }}</td>
+    <td>{{ trade[6] }}</td>
+</tr>
+{% endfor %}
+</table>
+
+</body>
+</html>
